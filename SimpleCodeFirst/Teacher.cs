@@ -13,6 +13,8 @@ namespace SimpleCodeFirst
 
         }
         public int TeacherId { get; set; }
-        public String TeacherName { get; set; }
+        public string TeacherName { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
+
 }

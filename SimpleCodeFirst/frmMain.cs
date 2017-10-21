@@ -11,24 +11,23 @@ using System.Windows.Forms;
 
 namespace SimpleCodeFirst
 {
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
         private SchoolDbContext ctx;
 
-        public frmMain()
+        public FrmMain()
         {
-            InitializeComponent();
-
-            Database.SetInitializer(new DropCreateDatabaseAlways<SchoolDbContext>());
             ctx = new SchoolDbContext();
+            InitializeComponent();
+            
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.refresh();
+            this.RefreshDataGrid();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(txtAdd.Text))
             {
@@ -38,13 +37,13 @@ namespace SimpleCodeFirst
                 ctx.SaveChanges();
 
                 txtAdd.Text = "";
-                this.refresh();
+                this.RefreshDataGrid();
             }
         }
 
-        private void refresh()
+        private void RefreshDataGrid()
         {
-            dgvStudent.DataSource = ctx.Students.ToList();
+            dgvStudent.DataSource = ctx.Students?.ToList();
         }
     }
 }

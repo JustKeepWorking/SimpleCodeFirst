@@ -11,7 +11,7 @@ namespace SimpleCodeFirst
     {
         public SchoolDbContext() : base()
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchoolDbContext, SimpleCodeFirst.Migrations.Configuration>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -19,11 +19,9 @@ namespace SimpleCodeFirst
             modelBuilder.HasDefaultSchema("MRSIMPLE");
             base.OnModelCreating(modelBuilder);
         }
-
         public DbSet<Student> Students { get; set; }
-        public DbSet<Standard> Standards { get; set; }
 
-        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Teacher> Standards { get; set; }
 
     }
 }
